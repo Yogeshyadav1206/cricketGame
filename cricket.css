@@ -1,0 +1,32 @@
+body{
+    text-align: center;
+    background-color: rgb(146, 200, 146);
+    /* background-image: url(IMG_4149.JPG);
+    background-repeat: no-repeat; */
+   
+}
+.btn-container{
+    margin: 25px;
+}
+.btn{
+    margin: 10px;
+    height: 70px;
+    
+    border: 1px solid black;
+    border-radius: 50px;
+    font-weight: 800;
+    filter: drop-shadow(1px 1px 20px rgb(208, 7, 7));
+    cursor: pointer;
+    border: none;
+    box-sizing: content-box;
+}
+#head{
+    margin-top: 50px;
+}
+/* h1{
+    color: red;
+} */
+
+ .img{
+    height: 57px;
+ }

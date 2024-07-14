@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cricket.css">
+    <title>Cricket-Game</title>
+</head>
+<body>
+   <div id="head">
+    <h1>Bat Ball Stump Game</h1>
+   </div>
+  <div class="btn-container">
+    <button class="btn"  onclick="userchoice='bat';   display() "><img class="img" src="IMG_4170.PNG" > </button>
+    <button class="btn"  onclick="userchoice='ball';  display() "><img class="img" style=" height: 60px; width: 62px;" src="bat.png"></button>
+    <button class="btn"  onclick="userchoice='stump'; display() "><img class="img" src="IMG_4172.PNG"></button>
+  </div>
+  <h3 id="display1"></h3>
+  <h3 id="display2"></h3>
+  <h3 id="display3"></h3>
+  <h3 id="display4"></h3>
+  <button class="btn2" onclick="reset()">Reset</button>
+    <script>
+            let score = JSON.parse(localStorage.getItem('score')) || {
+                won: 0,
+                tied: 0,
+                loss: 0,
+            };
+            let random;
+            let userchoice;
+        function computerturn(){
+            random = Math.random()*3;
+            if(random>=0&&random<=1){
+            computerchoice='bat';
+
+            }
+            else if(random>=1&&random<=2){
+            computerchoice='ball';
+
+            }
+            else{
+            computerchoice='stump';
+            }
+            return computerchoice;
+        }
+
+        function finalresult(){
+            let result;
+            if(userchoice==='bat'){
+                
+                if(computerchoice==='bat'){
+                    result='match is tied';
+                    score.tied++;
+                }
+                else if(computerchoice=== 'ball'){
+                    result='cogratulation! you have won';
+                      score.won++;
+                   
+                }
+                else{
+                    result='sorry! you have lost';
+                    score.loss++;
+                   
+                }
+
+            }
+            else if(userchoice==='ball'){
+
+                if(computerchoice==='bat'){
+                    result='sorry! you have lost';
+                    score.loss++;
+                  
+                }
+                else if(computerchoice=== 'ball'){
+                    result='match is tied';
+                    score.tied++;
+                   
+                }
+                else{
+                    result='cogratulation! you have won';
+                    score.won++;
+                    
+                }
+
+            }
+
+            else{
+
+                if(computerchoice==='stump'){
+                    result='match is tied';
+                    score.tied++;
+                    
+                }
+                else if(computerchoice=== 'bat'){
+                    result='sorry! you have lost';
+                    score.loss++;
+                    
+                }
+                else{
+                    result='cogratulation! you have won';
+                    score.won++;
+                    
+
+                }
+            }
+            localStorage.setItem('score',JSON.stringify(score));
+            return result;
+        }
+        function reset(){
+            localStorage.clear();
+            score = { won: 0, tied: 0, loss: 0 };
+            document.querySelector('#display4').innerText = 'Won: 0  loss: 0  tied: 0';
+        }
+
+        function display(){
+            document.querySelector('#display1').innerText=('you have choose  '+userchoice);
+            document.querySelector('#display2').innerText=('computer choose '+computerturn());
+            document.querySelector('#display3').innerText=(finalresult());
+            document.querySelector('#display4').innerText=('Won:'+score.won+'  '+'loss:'+score.loss+'  '+'tied:'+score.tied);
+
+        }
+    </script>
+</body>
+</html>
